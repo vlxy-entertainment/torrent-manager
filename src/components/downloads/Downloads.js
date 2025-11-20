@@ -20,6 +20,7 @@ import ActionBar from './ActionBar/index';
 import CardList from './CardList';
 import AutomationRules from './AutomationRules';
 import { formatSize } from './utils/formatters';
+import { useTorrentsStore } from '@/store/torrentsStore';
 
 export default function Downloads({ apiKey }) {
   const [toast, setToast] = useState(null);
@@ -31,11 +32,19 @@ export default function Downloads({ apiKey }) {
   const [viewMode, setViewMode] = useState('table');
   const [expandedItems, setExpandedItems] = useState(new Set());
   const hasExpandedRef = useRef(false);
+  const { setTorrents } = useTorrentsStore();
 
   const { loading, items, setItems, fetchItems } = useFetchData(
     apiKey,
     activeType,
   );
+
+  // Update global torrents store when torrents are loaded
+  useEffect(() => {
+    if (activeType === 'torrents' && items.length > 0) {
+      setTorrents(items);
+    }
+  }, [items, activeType, setTorrents]);
 
   const {
     selectedItems,

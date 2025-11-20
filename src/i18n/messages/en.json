@@ -23,7 +23,8 @@
       "toggle": "Toggle menu",
       "linkHistory": "Link History",
       "archived": "Archived",
-      "tools": "Tools"
+      "tools": "Tools",
+      "csvUpload": "CSV Upload"
     }
   },
   "LandingPage": {

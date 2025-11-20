@@ -139,6 +139,16 @@ export default function Header() {
               {t('menu.tools')}
             </Link>
 
+            <Link
+              href="/csv-upload"
+              className={`text-white dark:text-primary-text-dark font-medium flex items-center gap-2
+                hover:text-white/80 dark:hover:text-primary-text-dark/80 transition-colors pb-2
+                ${pathname === '/csv-upload' || locales.some((locale) => pathname === `/${locale}/csv-upload`) ? 'border-b-2 border-accent dark:border-accent-dark' : ''}`}
+            >
+              <Icons.Upload />
+              {t('menu.csvUpload')}
+            </Link>
+
             {/* Divider */}
             <div className="h-4 w-px bg-primary-border dark:bg-border-dark"></div>
 
@@ -207,6 +217,16 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t('menu.tools')}
+            </Link>
+
+            <Link
+              href="/csv-upload"
+              className={`block text-white dark:text-primary-text-dark font-medium 
+                hover:text-white/80 dark:hover:text-primary-text-dark/80 transition-colors py-2
+                ${pathname === '/csv-upload' || locales.some((locale) => pathname === `/${locale}/csv-upload`) ? 'border-l-2 pl-2 border-accent dark:border-accent-dark' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('menu.csvUpload')}
             </Link>
             <div className="py-2 space-y-4">
               {isClient && (

@@ -20,6 +20,7 @@
     "next": "15.1.7",
     "next-intl": "^3.26.5",
     "next-pwa": "^5.6.0",
+    "papaparse": "^5.5.3",
     "posthog-js": "^1.225.0",
     "react": "^19.0.0",
     "react-chartjs-2": "^5.3.0",
