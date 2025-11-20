@@ -129,6 +129,16 @@ export default function Header() {
               {t('menu.linkHistory')}
             </Link>
 
+            <Link
+              href="/tools"
+              className={`text-white dark:text-primary-text-dark font-medium flex items-center gap-2
+                hover:text-white/80 dark:hover:text-primary-text-dark/80 transition-colors pb-2
+                ${pathname === '/tools' || locales.some((locale) => pathname === `/${locale}/tools`) ? 'border-b-2 border-accent dark:border-accent-dark' : ''}`}
+            >
+              <Icons.Tools />
+              {t('menu.tools')}
+            </Link>
+
             {/* Divider */}
             <div className="h-4 w-px bg-primary-border dark:bg-border-dark"></div>
 
@@ -187,6 +197,16 @@ export default function Header() {
               onClick={() => setIsMenuOpen(false)}
             >
               {t('menu.linkHistory')}
+            </Link>
+
+            <Link
+              href="/tools"
+              className={`block text-white dark:text-primary-text-dark font-medium 
+                hover:text-white/80 dark:hover:text-primary-text-dark/80 transition-colors py-2
+                ${pathname === '/tools' || locales.some((locale) => pathname === `/${locale}/tools`) ? 'border-l-2 pl-2 border-accent dark:border-accent-dark' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {t('menu.tools')}
             </Link>
             <div className="py-2 space-y-4">
               {isClient && (
