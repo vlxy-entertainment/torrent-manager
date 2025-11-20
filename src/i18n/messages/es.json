@@ -1,0 +1,474 @@
+{
+  "Index": {
+    "title": "TorBox Manager",
+    "description": "Gestor de torrents y desfragmentación",
+    "search": "Buscar",
+    "searchPlaceholder": "Buscar torrents..."
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "search": "Buscar",
+    "settings": "Configuración"
+  },
+  "Header": {
+    "title": "TorBox Manager",
+    "logo": "Logotipo de TorBox Manager",
+    "theme": {
+      "toggleDark": "Activar modo oscuro",
+      "toggleLight": "Activar modo claro"
+    },
+    "menu": {
+      "downloads": "Descargas",
+      "search": "Buscar",
+      "toggle": "Activar menú",
+      "linkHistory": "Historial de enlaces",
+      "archived": "Archivados"
+    }
+  },
+  "LandingPage": {
+    "title": "TorBox Manager",
+    "subtitle": "La alternativa del usuario avanzado a la interfaz de usuario de TorBox. Creado para la velocidad y la eficiencia.",
+    "features": {
+      "batchUpload": {
+        "title": "Carga por lotes",
+        "description": "Carga varios torrents con un solo clic"
+      },
+      "search": {
+        "title": "Búsqueda inteligente",
+        "description": "Busca en múltiples sitios de torrents"
+      },
+      "debrid": {
+        "title": "Integración de Debrid",
+        "description": "Integración perfecta con los servicios de Debrid"
+      }
+    },
+    "apiKeyInput": {
+      "title": "Introducir clave API de TorBox",
+      "description": "Encuentra tu clave API en",
+      "link": "torbox.app/settings"
+    },
+    "footer": {
+      "description": "No almacenamos ninguna de tu información. Esta aplicación es totalmente de código abierto en",
+      "github": "GitHub"
+    }
+  },
+  "ApiKeyInput": {
+    "placeholder": "Introducir clave API de TorBox",
+    "show": "Mostrar clave API",
+    "hide": "Ocultar clave API",
+    "manageKeys": "Gestionar claves API"
+  },
+  "ApiKeyManager": {
+    "savedKeys": "Claves API guardadas",
+    "addKey": "Añadir clave",
+    "addNewKey": "Añadir nueva clave API",
+    "keyLabel": "Etiqueta de clave",
+    "keyLabelPlaceholder": "e.g. Personal, Familia",
+    "apiKey": "Clave API",
+    "apiKeyPlaceholder": "Introducir tu clave API",
+    "cancel": "Cancelar",
+    "add": "Añadir",
+    "deleteKey": "Eliminar clave",
+    "noKeys": "No hay claves guardadas",
+    "close": "Cerrar"
+  },
+  "ActionButtons": {
+    "downloadLinks": "Obtener enlaces de descarga",
+    "downloadLinksMobile": "Obtener enlaces",
+    "fetchingLinks": "Obteniendo enlaces...",
+    "delete": "Eliminar",
+    "deleteConfirm": {
+      "title": "Confirmar eliminación",
+      "message": "¿Está seguro de que desea eliminar {count} {type}? Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "deleting": "Eliminando...",
+      "includeParentDownloads": "Eliminar descargas",
+      "includeParentDownloadsTooltip": "Cuando se seleccionan archivos dentro de descargas, esta opción eliminará la descarga completa."
+    },
+    "clear": "Borrar"
+  },
+  "SearchBar": {
+    "placeholder": "Buscar por título o IMDB ID (e.g. imdb:tt0133093)...",
+    "clearSearch": "Borrar búsqueda",
+    "customEngines": "Motores personalizados"
+  },
+  "StatusSection": {
+    "selectedItems": "{itemCount} {type} seleccionados ({size})",
+    "selectedItemsFiles": "{itemCount} {type} & {fileCount} {fileType} seleccionados ({size})",
+    "selectedFiles": "{fileCount} archivos seleccionados ({size})",
+    "total": "{count} {type}"
+  },
+  "ViewControls": {
+    "tableView": "Vista de tabla",
+    "cardView": "Vista de tarjeta",
+    "hideSensitive": "Ocultar contenido sensible",
+    "showSensitive": "Mostrar contenido sensible",
+    "enterFullscreen": "Entrar en pantalla completa",
+    "exitFullscreen": "Salir de pantalla completa"
+  },
+  "ColumnManager": {
+    "reorderColumns": "Reordenar columnas",
+    "manageColumns": "Gestionar columnas"
+  },
+  "Common": {
+    "itemTypes": {
+      "torrent": "torrent",
+      "Torrent": "Torrent",
+      "torrents": "torrents",
+      "Torrents": "Torrents",
+      "file": "archivo",
+      "File": "Archivo",
+      "files": "archivos",
+      "Files": "Archivos",
+      "usenet": "usenet",
+      "Usenet": "Usenet",
+      "usenets": "usenets",
+      "Usenets": "Usenets",
+      "web": "web",
+      "Web": "Web",
+      "webdl": "webdl",
+      "Webdl": "Webdl"
+    },
+    "time": {
+      "in": "en ",
+      "ago": " atrás",
+      "y": "a",
+      "mo": "m",
+      "d": "d",
+      "h": "h",
+      "m": "m",
+      "s": "s",
+      "unknown": "Desconocido",
+      "complete": "Completado"
+    },
+    "minutes": "minutos",
+    "hours": "horas"
+  },
+  "ItemUploader": {
+    "title": {
+      "default": "Subir",
+      "torrents": "Subir torrents",
+      "usenet": "Subir archivos NZB",
+      "webdl": "Añadir descargas web"
+    },
+    "placeholder": {
+      "torrents": "Pegar enlaces magnet aquí (uno por línea)",
+      "usenet": "Pegar enlaces NZB aquí (uno por línea)",
+      "webdl": "Pegar enlaces de descarga web aquí (uno por línea)",
+      "webdlPassword": "Introducir contraseña (opcional)"
+    },
+    "dropzone": {
+      "torrents": "Soltar archivos torrent aquí",
+      "usenet": "Soltar archivos NZB aquí"
+    },
+    "button": {
+      "torrents": "Subir torrents",
+      "usenet": "Subir NZB",
+      "webdl": "Añadir enlaces"
+    },
+    "options": {
+      "show": "Mostrar opciones",
+      "hide": "Ocultar opciones"
+    },
+    "section": {
+      "show": "Mostrar sección",
+      "hide": "Ocultar sección"
+    },
+    "status": {
+      "processing": "{count} de {total} elementos procesados",
+      "clearItems": "Borrar elementos"
+    }
+  },
+  "SpeedChart": {
+    "title": {
+      "default": "Red",
+      "full": "Actividad de Red"
+    },
+    "chart": {
+      "show": "Mostrar gráfico",
+      "hide": "Ocultar gráfico"
+    },
+    "timeRanges": {
+      "1m": "Último 1m",
+      "10m": "Último 10m",
+      "1h": "Último 1h",
+      "3h": "Último 3h",
+      "6h": "Último 6h",
+      "all": "Todo"
+    },
+    "scale": {
+      "linear": "Lineal",
+      "logarithmic": "Log"
+    },
+    "labels": {
+      "download": "Descarga",
+      "upload": "Subida"
+    }
+  },
+  "PanelDescarga": {
+    "título": {
+      "individual": "Enlace de descarga",
+      "múltiple": "Enlaces de descarga"
+    },
+    "estado": {
+      "obteniendo": "Obteniendo {actual} de {total}",
+      "generando": "Generando enlaces...",
+      "generatingMore": "Generando más enlaces..."
+    },
+    "actions": {
+      "copyAll": "Copiar todos los enlaces",
+      "copyLink": "Copiar enlace",
+      "downloadFile": "Descargar archivo",
+      "clearAll": "Borrar todo"
+    },
+    "toast": {
+      "linksCopied": "¡Enlaces copiados al portapapeles!",
+      "linkCopied": "¡Enlace copiado al portapapeles!",
+      "copyFailed": "Error al copiar enlace",
+      "copyAllFailed": "Error al copiar enlaces"
+    }
+  },
+  "TorrentOptions": {
+    "title": "Opciones de carga global",
+    "seedingPreference": {
+      "label": "Preferencia de siembra",
+      "auto": "Automático (predeterminado)",
+      "always": "Siempre sembrar",
+      "never": "Nunca sembrar"
+    },
+    "allowZip": {
+      "label": "Permitir Zip",
+      "description": "Para torrents con más de 100 archivos"
+    },
+    "instantQueue": {
+      "label": "Cola instantánea",
+      "description": "Saltar la cola de espera"
+    },
+    "autoStart": {
+      "title": "Procesar torrents en cola",
+      "tooltip": "Iniciar automáticamente la descarga de torrents hasta el límite especificado",
+      "label": "Habilitar inicio automático",
+      "limit": "Límite de torrents activos:"
+    }
+  },
+  "AutomationRules": {
+    "title": "Reglas de automatización",
+    "addRule": "Añadir regla",
+    "ruleName": "Nombre de la regla",
+    "ruleNamePlaceholder": "Introducir nombre de la regla",
+    "checkEvery": "Comprobar cada",
+    "condition": "Condición",
+    "conditions": {
+      "seedingTime": "Tiempo de siembra",
+      "stalledTime": "Tiempo de pausa",
+      "seedingRatio": "Proporción de siembra"
+    },
+    "operators": {
+      "gt": "es mayor que",
+      "lt": "es menor que",
+      "gte": "es mayor o igual a",
+      "lte": "es menor o igual a",
+      "eq": "es igual a"
+    },
+    "action": "Acción",
+    "actions": {
+      "stopSeeding": "Detener siembra",
+      "archive": "Archivar descarga",
+      "delete": "Eliminar descarga",
+      "forceStart": "Forzar inicio de descarga"
+    },
+    "section": {
+      "show": "Mostrar reglas",
+      "hide": "Ocultar reglas"
+    },
+    "cancel": "Cancelar",
+    "add": "Añadir regla",
+    "update": "Actualizar regla",
+    "delete": "Eliminar",
+    "noRules": "No hay reglas de automatización",
+    "executions": "ejecuciones",
+    "neverTriggered": "nunca activado",
+    "neverExecuted": "nunca ejecutado",
+    "lastTriggered": "último activado",
+    "triggers": "activadores",
+    "enabledAt": "habilitado a"
+  },
+  "Columns": {
+    "id": "ID",
+    "hash": "Hash",
+    "name": "Nombre",
+    "size": "Tamaño",
+    "created_at": "Fecha de adición",
+    "cached_at": "Fecha de caché",
+    "updated_at": "Última actualización",
+    "download_state": "Estado",
+    "progress": "Progreso",
+    "ratio": "Proporción",
+    "file_count": "Recuento de archivos",
+    "download_speed": "Velocidad de descarga",
+    "upload_speed": "Velocidad de carga",
+    "eta": "ETA",
+    "total_uploaded": "Total cargado",
+    "total_downloaded": "Total descargado",
+    "seeds": "Semillas",
+    "peers": "Pares",
+    "original_url": "URL de origen",
+    "expires_at": "Caduca a",
+    "actions": "Acciones"
+  },
+  "Statuses": {
+    "completed": "Completado",
+    "downloading": "Descargando",
+    "failed": "Fallido",
+    "inactive": "Inactivo",
+    "queued": "En cola",
+    "seeding": "Sembrando",
+    "stalled": "En pausa",
+    "uploading": "Subiendo",
+    "checking_resume_data": "Comprobando datos de resumen",
+    "meta_dl": "Descargando metadatos",
+    "unknown": "Desconocido"
+  },
+  "ItemActions": {
+    "toast": {
+      "noFiles": "No hay archivos disponibles para descargar",
+      "downloadStarted": "Descarga iniciada correctamente",
+      "downloadFailed": "Error al iniciar la descarga",
+      "seedingStopped": "Torrent no pudo iniciar la propagación correctamente",
+      "seedingStopFailed": "Torrent no pudo detener la propagación correctamente",
+      "deleteError": "Error al eliminar: {error}",
+      "deleteSuccess": "Eliminado correctamente",
+      "deleteAllSuccess": "Todos los artículos eliminados correctamente",
+      "deletePartialSuccess": "Se han eliminado {count} de {total} elementos",
+      "deleteAllFailed": "No se han podido eliminar los elementos"
+    }
+  },
+  "ItemActionButtons": {
+    "stop": {
+      "title": "Detener la propagación",
+      "label": "Detener"
+    },
+    "start": {
+      "title": "Forzar inicio",
+      "label": "Iniciar"
+    },
+    "files": {
+      "show": "Mostrar archivos",
+      "hide": "Ocultar archivos",
+      "label": "Archivos"
+    },
+    "download": {
+      "title": "Descargar",
+      "label": "Descargar"
+    },
+    "delete": {
+      "title": "Eliminar",
+      "label": "Eliminar"
+    }
+  },
+  "MoreOptionsDropdown": {
+    "title": "Más opciones",
+    "label": "Más",
+    "copyId": "Copiar ID",
+    "copyHash": "Copiar hash",
+    "copyShortMagnet": "Copiar imán corto",
+    "copyFullMagnet": "Copiar imán completo",
+    "reannounce": "Volver a anunciar",
+    "exportarTorrent": "Exportar .torrent",
+    "copiarURLFuente": "Copiar URL fuente",
+    "toast": {
+      "idCopiado": "ID copiado al portapapeles",
+      "hashNoDisponible": "Hash no disponible",
+      "hashCopiado": "Hash copiado al portapapeles",
+      "enlaceMagnéticoCortoCopiado": "Enlace magnético corto copiado al portapapeles",
+      "fullMagnetCopied": "Enlace magnético completo copiado al portapapeles",
+      "magnetError": "Error al obtener el enlace magnético",
+      "reannounceSuccess": "Torrent anunciado de nuevo con éxito",
+      "reannounceFailed": "Error al anunciar de nuevo el torrent",
+      "sourceUrlNotAvailable": "URL de origen no disponible",
+      "sourceUrlCopied": "URL de origen copiada al portapapeles",
+      "clipboardError": "Error al copiar al portapapeles"
+    }
+  },
+  "CardList": {
+    "toast": {
+      "copyLink": "Enlace copiado al portapapeles",
+      "copyLinkFailed": "Error al copiar el enlace"
+    }
+  },
+  "TableBody": {
+    "toast": {
+      "copyLink": "Enlace copiado al portapapeles",
+      "copyLinkFailed": "Error al copiar enlace"
+    }
+  },
+  "SearchResults": {
+    "results": "{count} resultados",
+    "noResults": "No se han encontrado resultados",
+    "cachedOnly": "Solo en caché",
+    "hideTorBoxIndexers": "Ocultar indexadores de TorBox",
+    "sort": {
+      "seeders": "La mayoría de los seeders",
+      "size": "El tamaño más grande",
+      "age": "El más reciente"
+    },
+    "actions": {
+      "copyMagnet": "Copiar imán",
+      "copyLink": "Copiar enlace",
+      "addToTorbox": "Añadir a TorBox",
+      "adding": "Añadiendo...",
+      "added": "Añadido"
+    },
+    "toast": {
+      "magnetCopied": "Enlace magnético copiado al portapapeles",
+      "nzbCopied": "Enlace NZB copiado al portapapeles",
+      "torrentAdded": "Torrent añadido a TorBox correctamente",
+      "nzbAdded": "NZB añadido a TorBox correctamente",
+      "torrentAddFailed": "Error al añadir torrent: {error}",
+      "nzbAddFailed": "Error al añadir NZB: {error}"
+    },
+    "metadata": {
+      "days": "días",
+      "cached": "Caché"
+    }
+  },
+  "FileActions": {
+    "copyLink": "Copiar enlace",
+    "download": "Descargar archivo"
+  },
+  "LinkHistory": {
+    "title": "Historial de enlaces",
+    "columns": {
+      "itemId": "ID del elemento",
+      "itemName": "Nombre del elemento",
+      "fileName": "Nombre del archivo",
+      "expiresAt": "Caduca a",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "copy": "Copiar",
+      "download": "Descargar",
+      "remove": "Eliminar"
+    },
+    "expired": "Expirado"
+  },
+  "ArchivedDownloads": {
+    "title": "Descargas archivadas",
+    "columns": {
+      "itemId": "ID del elemento",
+      "itemName": "Nombre del elemento",
+      "itemType": "Tipo de elemento",
+      "archivedAt": "Archivado el",
+      "actions": "Acciones"
+    },
+    "actions": {
+      "remove": "Eliminar",
+      "add_to_torbox": "Añadir a TorBox",
+      "copyMagnet": "Copiar imán"
+    },
+    "toast": {
+      "magnetCopied": "Enlace magnético copiado al portapapeles"
+    }
+  }
+}
