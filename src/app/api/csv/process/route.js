@@ -12,6 +12,7 @@ import { createSupabaseClient } from '@/utils/supabase';
  * - magnet: Ignored
  * - thumbnail: Thumbnail URL
  * - hash: Torrent hash ID
+ * - description: Video description (optional)
  */
 export async function POST(request) {
   try {
@@ -69,6 +70,7 @@ export async function POST(request) {
           actresses,
           thumbnail,
           hash,
+          description,
         } = row;
 
         // Validate required fields
@@ -235,6 +237,9 @@ export async function POST(request) {
 
         const nextIndex = (maxIndexData?.index || 0) + 1;
 
+        // Process description - use it if it has a value, otherwise null
+        const video_description = description?.trim() || null;
+
         const { data: queueItem, error: insertError } = await supabase
           .from('video_processing_queue')
           .insert({
@@ -248,6 +253,7 @@ export async function POST(request) {
             actresses: actresses?.trim() || null,
             thumbnail_url: thumbnail_url?.trim() || null,
             video_network: video_network?.trim() || null,
+            video_description: video_description,
           })
           .select()
           .single();
