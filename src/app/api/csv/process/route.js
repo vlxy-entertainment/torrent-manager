@@ -227,23 +227,13 @@ export async function POST(request) {
         // Insert into video_processing_queue
         const supabase = createSupabaseClient();
 
-        // Get the current max index
-        const { data: maxIndexData } = await supabase
-          .from('video_processing_queue')
-          .select('index')
-          .order('index', { ascending: false })
-          .limit(1)
-          .single();
-
-        const nextIndex = (maxIndexData?.index || 0) + 1;
-
         // Process description - use it if it has a value, otherwise null
         const video_description = description?.trim() || null;
 
         const { data: queueItem, error: insertError } = await supabase
           .from('video_processing_queue')
           .insert({
-            index: nextIndex,
+            index: -1,
             status: 'queued',
             progress: 0,
             video_name: title.trim(),
