@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack -p 4000",
     "build": "next build",
+    "build:cloudflare": "npm run build && npx @cloudflare/next-on-pages",
     "start": "next start -p 4000",
     "lint": "next lint"
   },
@@ -29,6 +30,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.15.0",
     "@eslint/eslintrc": "^3",
     "@types/node": "22.13.4",
     "@types/react": "19.0.10",
