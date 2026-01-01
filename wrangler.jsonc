@@ -1,0 +1,8 @@
+{
+  "name": "torbox",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./.vercel/output/static"
+  }
+}
+
