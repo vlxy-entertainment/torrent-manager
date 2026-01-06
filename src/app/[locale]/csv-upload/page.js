@@ -19,6 +19,8 @@ export default function CsvUploadPage() {
   const [progress, setProgress] = useState(null);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [jobId, setJobId] = useState(null);
+  const [polling, setPolling] = useState(false);
   const { torrents, getTorrentByHash } = useTorrentsStore();
 
   useEffect(() => {
@@ -47,6 +49,61 @@ export default function CsvUploadPage() {
     }
   };
 
+  // Poll for job status
+  useEffect(() => {
+    if (!jobId || !polling) return;
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const response = await fetch(`/api/csv/job-status/${jobId}`);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to fetch job status');
+        }
+
+        const job = data.job;
+        
+        // Update progress
+        setProgress({
+          current: job.processedRows,
+          total: job.totalRows,
+          message: `Processing ${job.processedRows} / ${job.totalRows} rows...`,
+        });
+
+        // Check if job is completed
+        if (job.status === 'completed') {
+          setPolling(false);
+          setProcessing(false);
+          setProgress(null);
+          setResult({
+            success: true,
+            processed: job.results?.length || 0,
+            total: job.totalRows,
+            results: job.results,
+            errors: job.errors,
+          });
+          clearInterval(pollInterval);
+        } else if (job.status === 'failed') {
+          setPolling(false);
+          setProcessing(false);
+          setProgress(null);
+          setError('CSV processing failed. Please check the errors.');
+          setResult({
+            success: false,
+            errors: job.errors,
+          });
+          clearInterval(pollInterval);
+        }
+      } catch (err) {
+        console.error('Error polling job status:', err);
+        // Don't stop polling on transient errors
+      }
+    }, 2000); // Poll every 2 seconds
+
+    return () => clearInterval(pollInterval);
+  }, [jobId, polling]);
+
   const handleProcess = async () => {
     if (!file) {
       setError('Please select a CSV file');
@@ -68,7 +125,8 @@ export default function CsvUploadPage() {
     setProcessing(true);
     setError(null);
     setResult(null);
-    setProgress({ current: 0, total: 0, message: 'Processing CSV...' });
+    setJobId(null);
+    setPolling(false);
 
     try {
       // Read CSV to get row count
@@ -82,7 +140,7 @@ export default function CsvUploadPage() {
       setProgress({
         current: 0,
         total: totalRows,
-        message: `Processing ${totalRows} rows...`,
+        message: `Queuing CSV file with ${totalRows} rows for processing...`,
       });
 
       // Create FormData
@@ -90,7 +148,7 @@ export default function CsvUploadPage() {
       formData.append('file', file);
       formData.append('torrents', JSON.stringify(torrents));
 
-      // Send to API
+      // Send to API - this will queue the job and return immediately
       const response = await fetch('/api/csv/process', {
         method: 'POST',
         body: formData,
@@ -99,15 +157,20 @@ export default function CsvUploadPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to process CSV');
+        throw new Error(data.error || 'Failed to queue CSV for processing');
       }
 
-      setResult(data);
-      setProgress(null);
+      // Job queued successfully
+      setJobId(data.jobId);
+      setPolling(true);
+      setProgress({
+        current: 0,
+        total: data.totalRows,
+        message: `CSV queued for processing. Processing ${data.totalRows} rows in the background...`,
+      });
     } catch (err) {
-      setError(err.message || 'Failed to process CSV');
+      setError(err.message || 'Failed to queue CSV for processing');
       setProgress(null);
-    } finally {
       setProcessing(false);
     }
   };
@@ -117,6 +180,8 @@ export default function CsvUploadPage() {
     setResult(null);
     setError(null);
     setProgress(null);
+    setJobId(null);
+    setPolling(false);
     // Reset file input
     const fileInput = document.getElementById('csv-file-input');
     if (fileInput) {
@@ -149,7 +214,8 @@ export default function CsvUploadPage() {
             <p className="text-sm text-primary-text/70 dark:text-primary-text-dark/70 mb-4">
               Upload a CSV file to create video processing queue items. Each row
               will be processed to create a queue item in the video_processing_queue
-              table.
+              table. Large CSV files are processed asynchronously in the background
+              to prevent timeouts.
             </p>
 
             <div className="space-y-4">
@@ -221,14 +287,19 @@ export default function CsvUploadPage() {
                 <div className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
                   <p className="text-sm mb-2">{progress.message}</p>
                   {progress.total > 0 && (
-                    <div className="w-full bg-surface dark:bg-surface-dark rounded-full h-2">
-                      <div
-                        className="bg-accent h-2 rounded-full transition-all duration-300"
-                        style={{
-                          width: `${(progress.current / progress.total) * 100}%`,
-                        }}
-                      />
-                    </div>
+                    <>
+                      <div className="w-full bg-surface dark:bg-surface-dark rounded-full h-2 mb-2">
+                        <div
+                          className="bg-accent h-2 rounded-full transition-all duration-300"
+                          style={{
+                            width: `${Math.min((progress.current / progress.total) * 100, 100)}%`,
+                          }}
+                        />
+                      </div>
+                      <p className="text-xs text-primary-text/70 dark:text-primary-text-dark/70">
+                        {jobId && `Job ID: ${jobId}`}
+                      </p>
+                    </>
                   )}
                 </div>
               )}
