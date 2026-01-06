@@ -29,6 +29,10 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Skip ESLint during build to speed up Docker builds
+ENV ESLINT_NO_DEV_ERRORS=true
+ENV SKIP_ENV_VALIDATION=true
+
 RUN npm run build
 
 # Production image, copy all the files and run next

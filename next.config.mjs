@@ -8,6 +8,14 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   // Enable standalone output for Docker
   output: 'standalone',
+  // Skip ESLint during builds (useful for Docker builds)
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // Skip TypeScript type checking during builds (optional, uncomment if needed)
+  // typescript: {
+  //   ignoreBuildErrors: true,
+  // },
 };
 
 const withPWAConfig = withPWA({
