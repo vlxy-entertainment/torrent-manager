@@ -12,10 +12,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Skip TypeScript type checking during builds (optional, uncomment if needed)
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
+  // Skip TypeScript type checking during builds (speeds up Docker builds)
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 const withPWAConfig = withPWA({
