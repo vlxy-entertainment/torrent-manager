@@ -5,7 +5,10 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  // Enable standalone output for Docker
+  output: 'standalone',
+};
 
 const withPWAConfig = withPWA({
   dest: 'public',
