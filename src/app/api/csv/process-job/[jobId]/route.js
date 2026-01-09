@@ -9,7 +9,7 @@ import { createSupabaseClient } from '@/utils/supabase';
  */
 export async function POST(request, { params }) {
   try {
-    const { jobId } = params;
+    const { jobId } = await params;
     
     if (!jobId) {
       return NextResponse.json(
@@ -337,16 +337,24 @@ export async function POST(request, { params }) {
   } catch (error) {
     console.error('CSV processing error:', error);
     
-    // Update job status to failed
-    const supabase = createSupabaseClient();
-    await supabase
-      .from('csv_processing_jobs')
-      .update({
-        status: 'failed',
-        updated_at: new Date().toISOString(),
-      })
-      .eq('id', jobId)
-      .catch(err => console.error('Failed to update job status:', err));
+    // Update job status to failed (only if we have jobId)
+    try {
+      const { jobId } = await params;
+      if (jobId) {
+        const supabase = createSupabaseClient();
+        await supabase
+          .from('csv_processing_jobs')
+          .update({
+            status: 'failed',
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', jobId)
+          .catch(err => console.error('Failed to update job status:', err));
+      }
+    } catch (paramsError) {
+      // If we can't get params, just log it
+      console.error('Failed to get jobId from params:', paramsError);
+    }
 
     return NextResponse.json(
       { error: error.message || 'Failed to process CSV' },
