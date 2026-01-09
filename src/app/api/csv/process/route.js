@@ -22,7 +22,7 @@ export async function POST(request) {
   try {
     const formData = await request.formData();
     const csvFile = formData.get('file');
-    const torrentsJson = formData.get('torrents'); // JSON string of torrents array
+    const apiKey = request.headers.get('x-api-key'); // Get API key from headers
 
     if (!csvFile) {
       return NextResponse.json(
@@ -31,9 +31,9 @@ export async function POST(request) {
       );
     }
 
-    if (!torrentsJson) {
+    if (!apiKey) {
       return NextResponse.json(
-        { error: 'No torrents data provided' },
+        { error: 'API key is required' },
         { status: 400 },
       );
     }
@@ -68,7 +68,8 @@ export async function POST(request) {
     const supabase = createSupabaseClient();
     const jobId = randomUUID();
 
-    // Store job data - we'll use a JSONB column to store the CSV data and torrents
+    // Store job data - we'll fetch torrents server-side during processing
+    // Store API key (encrypted/hashed in production) to fetch torrents later
     const { data: job, error: insertError } = await supabase
       .from('csv_processing_jobs')
       .insert({
@@ -77,7 +78,7 @@ export async function POST(request) {
         total_rows: totalRows,
         processed_rows: 0,
         csv_data: csvText,
-        torrents_data: torrentsJson,
+        api_key: apiKey, // Store API key to fetch torrents during processing
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       })

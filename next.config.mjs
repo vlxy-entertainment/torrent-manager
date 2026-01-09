@@ -16,6 +16,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Increase body size limit for CSV uploads (default is 1MB)
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '50mb',
+    },
+  },
 };
 
 const withPWAConfig = withPWA({

@@ -66,8 +66,51 @@ export async function POST(request, { params }) {
       })
       .eq('id', jobId);
 
-    // Parse torrents
-    const torrents = JSON.parse(job.torrents_data);
+    // Fetch torrents from API using stored API key
+    const apiKey = job.api_key;
+    if (!apiKey) {
+      await supabase
+        .from('csv_processing_jobs')
+        .update({
+          status: 'failed',
+          errors: [{ error: 'API key not found in job data' }],
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', jobId);
+
+      return NextResponse.json(
+        { error: 'API key not found in job data' },
+        { status: 400 },
+      );
+    }
+
+    // Fetch torrents from the API
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:4000';
+    const torrentsResponse = await fetch(`${baseUrl}/api/torrents`, {
+      headers: {
+        'x-api-key': apiKey,
+        'bypass-cache': 'true',
+      },
+    });
+
+    if (!torrentsResponse.ok) {
+      await supabase
+        .from('csv_processing_jobs')
+        .update({
+          status: 'failed',
+          errors: [{ error: `Failed to fetch torrents: ${torrentsResponse.statusText}` }],
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', jobId);
+
+      return NextResponse.json(
+        { error: `Failed to fetch torrents: ${torrentsResponse.statusText}` },
+        { status: 500 },
+      );
+    }
+
+    const torrentsData = await torrentsResponse.json();
+    const torrents = torrentsData.data || [];
 
     // Parse CSV
     const Papa = (await import('papaparse')).default;

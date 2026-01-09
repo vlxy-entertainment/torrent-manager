@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import ApiKeyInput from '@/components/downloads/ApiKeyInput';
-import { useTorrentsStore } from '@/store/torrentsStore';
 import { Inter } from 'next/font/google';
 import Icons from '@/components/icons';
 import Papa from 'papaparse';
@@ -21,7 +20,7 @@ export default function CsvUploadPage() {
   const [error, setError] = useState(null);
   const [jobId, setJobId] = useState(null);
   const [polling, setPolling] = useState(false);
-  const { torrents, getTorrentByHash } = useTorrentsStore();
+  // Torrents are now fetched server-side during processing, no longer needed from store
 
   useEffect(() => {
     const storedKey = localStorage.getItem('torboxApiKey');
@@ -115,13 +114,7 @@ export default function CsvUploadPage() {
       return;
     }
 
-    if (torrents.length === 0) {
-      setError(
-        'No torrents loaded. Please load torrents on the home page first.',
-      );
-      return;
-    }
-
+    // Torrents will be fetched server-side during processing
     setProcessing(true);
     setError(null);
     setResult(null);
@@ -143,14 +136,18 @@ export default function CsvUploadPage() {
         message: `Queuing CSV file with ${totalRows} rows for processing...`,
       });
 
-      // Create FormData
+      // Create FormData - only send the CSV file
+      // Torrents will be fetched server-side during processing
       const formData = new FormData();
       formData.append('file', file);
-      formData.append('torrents', JSON.stringify(torrents));
 
       // Send to API - this will queue the job and return immediately
+      // API key is sent in headers, not in form data
       const response = await fetch('/api/csv/process', {
         method: 'POST',
+        headers: {
+          'x-api-key': apiKey,
+        },
         body: formData,
       });
 
