@@ -108,7 +108,7 @@ See [`DOCKER.md`](../../DOCKER.md) for the full operational guide (restart scrip
 
 ## 4. Environment Variables
 
-> **Note:** `.env.example` is intentionally minimal — it documents only the three application-specific variables. `DOCKER.md` is the authoritative source for the full variable list including PostHog, Sentry, and runtime vars. `NEXT_PUBLIC_APP_URL` is not in either file but is referenced directly in the CSV API routes with a `http://localhost:4000` fallback.
+> **Note:** `.env.example` is minimal — it documents the four application-specific variables (`NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `IMAGE_UPLOAD_ENDPOINT`, `NEXT_PUBLIC_APP_URL`). `DOCKER.md` is the authoritative source for the full variable list including PostHog, Sentry, and runtime vars.
 
 ### `NEXT_PUBLIC_*` variables are baked in at build time. Changing them requires a full image rebuild (`make restart` or `make rebuild`). Server-side variables are read at runtime but a restart is still recommended.
 
@@ -119,7 +119,7 @@ See [`DOCKER.md`](../../DOCKER.md) for the full operational guide (restart scrip
 | `IMAGE_UPLOAD_ENDPOINT` | Secret | URL of the image upload service used by server API routes | `.env.example` |
 | `NEXT_PUBLIC_POSTHOG_KEY` | Public | PostHog project API key — initialised in `providers.js` | `DOCKER.md` |
 | `NEXT_PUBLIC_POSTHOG_HOST` | Public | PostHog ingestion host (defaults to `https://us.i.posthog.com`) | `DOCKER.md` |
-| `NEXT_PUBLIC_APP_URL` | Public | Absolute base URL used to construct self-referencing API calls in CSV routes (defaults to `http://localhost:4000`) | code (`src/app/api/csv/`) |
+| `NEXT_PUBLIC_APP_URL` | Public | Absolute base URL used to construct self-referencing API calls in CSV routes (defaults to `http://localhost:4000`) | `.env.example` · code (`src/app/api/csv/`) |
 | `SENTRY_DSN` | Secret | Sentry data source name for error reporting | `DOCKER.md` |
 | `PORT` | Runtime | HTTP listen port (defaults to `4000`) | `DOCKER.md` |
 | `NODE_ENV` | Runtime | Node environment (`production` set in Dockerfile and `docker-compose.yml`) | `DOCKER.md` |
