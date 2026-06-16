@@ -30,7 +30,7 @@ npm run dev
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) and enter your TorBox API key to begin.
+4. Open [http://localhost:4000](http://localhost:4000) and enter your TorBox API key to begin.
 
 ## Requirements
 
